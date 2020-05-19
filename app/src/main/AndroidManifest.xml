@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.borkozic.plugin.locationshare">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="com.borkozic.permission.RECEIVE_LOCATION" />
+    <uses-permission android:name="com.borkozic.permission.NAVIGATION" />
+    <uses-permission android:name="com.borkozic.permission.READ_PREFERENCES" />
+    <uses-permission android:name="com.borkozic.permission.READ_MAP_DATA" />
+    <uses-permission android:name="com.borkozic.permission.WRITE_MAP_DATA" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.Application.Light.DarkActionBar"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name="com.borkozic.plugin.locationshare.SituationList"
+            android:label="@string/pref_sharing_title"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.borkozic.plugins.view" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.borkozic.plugin.locationshare.Preferences"
+            android:label="@string/pref_sharing_title"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.borkozic.plugins.preferences" />
+            </intent-filter>
+        </activity>
+
+        <service android:name="com.borkozic.plugin.locationshare.SharingService" />
+
+        <receiver android:name="com.borkozic.plugin.locationshare.Executor"
+            tools:ignore="ExportedReceiver">
+            <intent-filter>
+                <action android:name="com.borkozic.plugins.action.INITIALIZE" />
+                <action android:name="com.borkozic.plugins.action.FINALIZE" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>
